@@ -1,0 +1,9 @@
+{% if menu %}
+<h1>{{ menu }}</h1>
+<ul class="menu">
+    {% for item in root_items %}
+        {% include "webinterface/menu/menu_item.html" with item=item active_item_ids=active_item_ids menu_items=menu_items %}
+    {% endfor %}
+</ul>
+
+{% endif %}

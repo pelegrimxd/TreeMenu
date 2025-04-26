@@ -1,0 +1,16 @@
+{% load draw_menu %}
+
+<li class="menu-item {% is_active item active_item_ids as active %}{% if active %}active{% endif %}">
+    <a href="{{ item.get_url }}">{{ item.title }}</a>
+
+    {% has_active_child item active_item_ids menu_items as show_children %}
+    {% if show_children or active %}
+        <ul class="sub-menu">
+            {% for child in menu_items %}
+                {% if child.parent_id == item.id %}
+                    {% include "webinterface/menu/menu_item.html" with item=child active_item_ids=active_item_ids menu_items=menu_items %}
+                {% endif %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+</li>
