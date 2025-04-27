@@ -1,6 +1,4 @@
-# menu/templatetags/menu_tags.py
 from django import template
-from django.urls import resolve, reverse
 from ..models import Menu, MenuItem
 
 register = template.Library()
@@ -12,8 +10,6 @@ def draw_menu(context, menu_slug):
         menu_items = MenuItem.objects.filter(menu__slug=menu_slug)
 
         current_path = context['request'].path
-
-        # root_items = menu_items.filter(parent=None).order_by('order')
 
         active_item = None
         for item in menu_items:
